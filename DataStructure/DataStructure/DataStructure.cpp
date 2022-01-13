@@ -21,9 +21,21 @@ class queue
 private:
     std::list <char> container;
 public:
-    void enque(char data);
-    char deque(void);
+    void enqueue(char data);
+    char dequeue(void);
     int queueSize(void);
+};
+//deque : stack + queue
+class deque 
+{
+private:
+    std::list <char> container;
+public:
+    void pushLeft(char data);
+    char dequekPop(void);
+    void pushRight(char data);
+    char dequeue(void);
+    int dequeSize(void);
 };
 
 int main()
@@ -42,18 +54,39 @@ int main()
     std::cout << "size of stack : " << A.stackSize() << std::endl;
 
     queue B;
-    B.enque('A');
-    B.enque('B');
-    B.enque('C');
-    B.enque('D');
+    B.enqueue('A');
+    B.enqueue('B');
+    B.enqueue('C');
+    B.enqueue('D');
     std::cout << std::endl;
     std::cout << "size of queue : " << B.queueSize() << std::endl;
-    std::cout << "deque #1 : " << B.deque() << std::endl;
-    std::cout << "deque #2 : " << B.deque() << std::endl;
-    std::cout << "deque #3 : " << B.deque() << std::endl;
+    std::cout << "deque #1 : " << B.dequeue() << std::endl;
+    std::cout << "deque #2 : " << B.dequeue() << std::endl;
+    std::cout << "deque #3 : " << B.dequeue() << std::endl;
     std::cout << "deque of queue : " << B.queueSize() << std::endl;
-    std::cout << "deque #4 : " << B.deque() << std::endl;
+    std::cout << "deque #4 : " << B.dequeue() << std::endl;
     std::cout << "size of stack : " << B.queueSize() << std::endl;
+
+    deque C;
+    C.pushRight('c');
+    C.pushRight('d');
+    C.pushLeft('a');
+    C.pushLeft('b');
+    std::cout << "deque : " << C.dequekPop() << std::endl;
+    std::cout << "deque : " << C.dequekPop() << std::endl;
+    std::cout << C.dequeSize() << std::endl;
+    std::cout << "deque : " << C.dequekPop() << std::endl;
+    std::cout << "deque : " << C.dequekPop() << std::endl;
+    C.pushRight('c');
+    C.pushRight('d');
+    C.pushLeft('a');
+    C.pushLeft('b');
+    std::cout << "deque : " << C.dequeue() << std::endl;
+    std::cout << "deque : " << C.dequeue() << std::endl;
+    std::cout << C.dequeSize() << std::endl;
+    std::cout << "deque : " << C.dequeue() << std::endl;
+    std::cout << "deque : " << C.dequeue() << std::endl;
+    
 
 }
 
@@ -83,12 +116,12 @@ int stack::stackSize()
 }
 
 //queue function
-void queue::enque(char data)
+void queue::enqueue(char data)
 {
     (*this).container.push_back(data);
 }
 
-char queue::deque(void)
+char queue::dequeue(void)
 {
     if ((*this).container.empty())
     {
@@ -103,6 +136,47 @@ char queue::deque(void)
 }
 
 int queue::queueSize(void) 
+{
+    return (*this).container.size();
+}
+
+//deque function
+
+void deque::pushLeft(char data) 
+{
+    (*this).container.push_front(data);
+}
+char deque::dequekPop(void) 
+{
+    if ((*this).container.empty())
+    {
+        return 0;
+    }
+    else
+    {
+        char data = (*this).container.back();
+        (*this).container.pop_back();
+        return data;
+    }
+}
+void deque::pushRight(char data) 
+{
+    (*this).container.push_back(data);
+}
+char deque::dequeue(void) 
+{
+    if ((*this).container.empty())
+    {
+        return 0;
+    }
+    else
+    {
+        char data = (*this).container.front();
+        (*this).container.pop_front();
+        return data;
+    }
+}
+int deque::dequeSize(void) 
 {
     return (*this).container.size();
 }
