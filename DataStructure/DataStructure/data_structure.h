@@ -56,9 +56,9 @@ public :
         this->head.nextNode = NULL;
     }
     void pushFront(single_LinkedList_Node node);
-    void pushBack(single_LinkedList_Node node);
+    void pushBack(char data);
     char popFront(void);
     char popBack(void);
-    //void showList(void);
+    void showList(void);
     single_LinkedList_Node* getHeadAdress();
 };

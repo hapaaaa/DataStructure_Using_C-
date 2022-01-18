@@ -103,20 +103,23 @@ void single_LinkedList::pushFront(single_LinkedList_Node node)
     
 }
 
-void single_LinkedList::pushBack(single_LinkedList_Node &node)
+void single_LinkedList::pushBack(char data)
 {
-    single_LinkedList_Node* buffer;
+    single_LinkedList_Node* lastNode;
+    single_LinkedList_Node* newNode = new(single_LinkedList_Node);
+    newNode->data = data;
+    newNode->nextNode = NULL;
 
-    buffer = this->getHeadAdress();    // buffer acts like a marker that points out location
+    lastNode = this->getHeadAdress();    // buffer acts like a marker that points out location
 
-    while( buffer->nextNode != NULL )
+    while(lastNode->nextNode != NULL )
     { 
-        buffer = buffer->nextNode;
+        lastNode = lastNode->nextNode;
     }
 
-    buffer->nextNode = &node;
+    lastNode->nextNode = newNode;
 
-    std::cout << "PushBack Suceess " << buffer->nextNode << std::endl;
+    std::cout << "PushBack Suceess " << newNode->data << std::endl;
 }
 
 char single_LinkedList::popFront(void)
@@ -129,18 +132,19 @@ char single_LinkedList::popBack(void)
     return 0;
 }
 
-/*
+
  void single_LinkedList::showList(void)
 {
-    single_LinkedList_Node* buffer;
+    single_LinkedList_Node* pointer;
 
-    buffer = (*this).getHeadAdress();    // buffer acts like a marker that points out location
+    pointer = this->getHeadAdress();    // buffer acts like a marker that points out location
 
-    while((*buffer).nextNode != NULL)
+    while(pointer -> nextNode != NULL)
     {
-        std::cout << "Data : " << (*buffer).data << std::endl;
-        buffer = (*buffer).nextNode;
+        std::cout << "Data : " << pointer -> data << std::endl;
+        pointer = pointer -> nextNode;
     }
+    std::cout << "Data : " << pointer->data << std::endl;
 }
-*/
+
 

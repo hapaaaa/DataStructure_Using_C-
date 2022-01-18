@@ -54,19 +54,13 @@ int main()
     std::cout << "deque : " << C.dequeue() << std::endl;
 
     single_LinkedList D;
-    extern single_LinkedList_Node sNode[10];
-    for (int i = 0; i < 10; i++) 
-    {
-        sNode[i].data = 'a' + i;
-        sNode[i].nextNode = NULL;
-        D.pushBack(sNode[i]);
-    }
+   
     for (int i = 0; i < 10; i++)
     {
-        std::cout<< "Node 현재 주소 : " << &sNode[i] << " Node 현재 값 : " << sNode[i].data << " Node 다음 주소 : " << sNode[i].nextNode << std::endl;
+        D.pushBack('a'+ i );
     }
 
-   // D.showList();
+    D.showList();
 
 }
 
