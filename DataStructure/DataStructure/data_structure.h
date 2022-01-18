@@ -55,10 +55,10 @@ public :
         this->head.data = 'H';
         this->head.nextNode = NULL;
     }
-    void pushFront(single_LinkedList_Node node);
-    void pushBack(char data);
-    char popFront(void);
-    char popBack(void);
-    void showList(void);
-    single_LinkedList_Node* getHeadAdress();
+    void pushFront(char data);  // O(1)
+    void pushBack(char data); // O(n)
+    char popFront(void); // O(1)
+    char popBack(void); // O(n)
+    void showList(void); // O(n)
+    single_LinkedList_Node* getHeadAdress(); // O(1)
 };

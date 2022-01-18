@@ -98,9 +98,21 @@ single_LinkedList_Node* single_LinkedList::getHeadAdress()
     return &(this->head);
 }
 
-void single_LinkedList::pushFront(single_LinkedList_Node node)
+void single_LinkedList::pushFront(char data)
 {
-    
+    single_LinkedList_Node* newNode = new(single_LinkedList_Node);
+    newNode->data = data;
+    newNode->nextNode = NULL;
+
+    if (this->getHeadAdress() == NULL) 
+    {
+        this->head = *newNode;
+    }
+    else 
+    {
+        newNode->nextNode = this->head.nextNode;
+        this->head.nextNode = newNode;
+    }
 }
 
 void single_LinkedList::pushBack(char data)
@@ -112,24 +124,65 @@ void single_LinkedList::pushBack(char data)
 
     lastNode = this->getHeadAdress();    // buffer acts like a marker that points out location
 
-    while(lastNode->nextNode != NULL )
-    { 
-        lastNode = lastNode->nextNode;
+    if (lastNode == NULL)
+    {
+        this->head = *newNode;
     }
 
-    lastNode->nextNode = newNode;
+    else 
+    {
+        while (lastNode->nextNode != NULL)
+        {
+            lastNode = lastNode->nextNode;
+        }
 
-    std::cout << "PushBack Suceess " << newNode->data << std::endl;
+        lastNode->nextNode = newNode;
+    }
+    
 }
 
 char single_LinkedList::popFront(void)
 {
-    return 0;
+    char data;
+    single_LinkedList_Node* buffer;
+
+    if (this->getHeadAdress() == NULL) 
+    {
+        return false;
+    }
+    else 
+    {
+        buffer = &(this->head);
+        data = this->head.data;
+        this->head.data = this->head.nextNode->data;
+        this->head.nextNode = this->head.nextNode->nextNode;
+        free(buffer);
+
+        return data;
+    }
+
 }
 
 char single_LinkedList::popBack(void) 
 {
-    return 0;
+    single_LinkedList_Node* beforeLastNode;
+    single_LinkedList_Node* lastNode;
+    char data = 0;
+
+    beforeLastNode = this->getHeadAdress();
+    if (beforeLastNode == NULL) return false;
+
+    while (beforeLastNode->nextNode->nextNode != NULL)
+    {
+        beforeLastNode = beforeLastNode->nextNode;
+    }
+
+    lastNode = beforeLastNode->nextNode;
+    data = lastNode->data;
+    beforeLastNode->nextNode = NULL;
+    free(lastNode);
+
+    return data;
 }
 
 
