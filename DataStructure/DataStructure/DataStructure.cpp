@@ -2,41 +2,7 @@
 // Programming language is C++
 // data type is "char"
 
-#include <iostream>
-#include <list>
-
-//stack
-class stack
-{
-private :
-    std::list <char> container;
-public : 
-    void stackPush(char data);
-    char stackPop(void);
-    int stackSize();
-};
-//queue
-class queue
-{
-private:
-    std::list <char> container;
-public:
-    void enqueue(char data);
-    char dequeue(void);
-    int queueSize(void);
-};
-//deque : stack + queue
-class deque 
-{
-private:
-    std::list <char> container;
-public:
-    void pushLeft(char data);
-    char dequekPop(void);
-    void pushRight(char data);
-    char dequeue(void);
-    int dequeSize(void);
-};
+#include "data_structure.h"
 
 int main()
 {
@@ -86,98 +52,22 @@ int main()
     std::cout << C.dequeSize() << std::endl;
     std::cout << "deque : " << C.dequeue() << std::endl;
     std::cout << "deque : " << C.dequeue() << std::endl;
-    
 
-}
-
-//stack function
-void stack::stackPush(char data)
-{
-    (*this).container.push_back(data);
-}
-
-char stack::stackPop(void)
-{
-    if ((*this).container.empty())
+    single_LinkedList D;
+    extern single_LinkedList_Node sNode[10];
+    for (int i = 0; i < 10; i++) 
     {
-        return 0;
+        sNode[i].data = 'a' + i;
+        sNode[i].nextNode = NULL;
+        D.pushBack(sNode[i]);
     }
-    else
+    for (int i = 0; i < 10; i++)
     {
-        char data = (*this).container.back();
-        (*this).container.pop_back();
-        return data;
+        std::cout<< "Node 현재 주소 : " << &sNode[i] << " Node 현재 값 : " << sNode[i].data << " Node 다음 주소 : " << sNode[i].nextNode << std::endl;
     }
+
+   // D.showList();
+
 }
 
-int stack::stackSize()
-{
-    return (*this).container.size();
-}
-
-//queue function
-void queue::enqueue(char data)
-{
-    (*this).container.push_back(data);
-}
-
-char queue::dequeue(void)
-{
-    if ((*this).container.empty())
-    {
-        return 0;
-    }
-    else
-    {
-        char data = (*this).container.front();
-        (*this).container.pop_front();
-        return data;
-    }
-}
-
-int queue::queueSize(void) 
-{
-    return (*this).container.size();
-}
-
-//deque function
-
-void deque::pushLeft(char data) 
-{
-    (*this).container.push_front(data);
-}
-char deque::dequekPop(void) 
-{
-    if ((*this).container.empty())
-    {
-        return 0;
-    }
-    else
-    {
-        char data = (*this).container.back();
-        (*this).container.pop_back();
-        return data;
-    }
-}
-void deque::pushRight(char data) 
-{
-    (*this).container.push_back(data);
-}
-char deque::dequeue(void) 
-{
-    if ((*this).container.empty())
-    {
-        return 0;
-    }
-    else
-    {
-        char data = (*this).container.front();
-        (*this).container.pop_front();
-        return data;
-    }
-}
-int deque::dequeSize(void) 
-{
-    return (*this).container.size();
-}
 

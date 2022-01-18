@@ -140,6 +140,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DataStructure.cpp" />
+    <ClCompile Include="data_structure.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="data_structure.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
