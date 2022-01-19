@@ -18,7 +18,9 @@ int main()
 
     std::cout << std::endl;
 
-    
+    std::cout << D.popFront() << std::endl;
+    std::cout << D.popFront() << std::endl;
+    std::cout << D.popFront() << std::endl;
 
     D.showList();
 

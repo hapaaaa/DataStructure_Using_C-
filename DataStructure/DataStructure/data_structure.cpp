@@ -141,7 +141,7 @@ void single_LinkedList::pushBack(char data)
     
 }
 
-char single_LinkedList::popFront(void)
+char single_LinkedList::popFront(void) // why did you try to set free of static variable ?
 {
     char data;
     single_LinkedList_Node* buffer;
@@ -152,13 +152,10 @@ char single_LinkedList::popFront(void)
     }
     else 
     {
-        buffer = &(this->head);
-        data = this->head.data;
-        this->head.data = this->head.nextNode->data;
-        this->head.nextNode = this->head.nextNode->nextNode;
+        buffer = this->head.nextNode;
+        data = buffer->data;
+        this->head.nextNode = buffer->nextNode;
         free(buffer);
-
-        return data;
     }
 
 }
