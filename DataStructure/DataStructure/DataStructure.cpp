@@ -7,24 +7,15 @@
 int main()
 {
     
-    single_LinkedList D;
+    circular_Single_LinkedList E;
+    for(int i = 0; i < 10 ; i++)
+    E.pushBack('a' + i);
 
     for (int i = 0; i < 10; i++)
-    {
-        D.pushFront('a' + i);
-    }
+    std::cout<<E.popBack()<<std::endl;
 
-    D.showList();
-
-    std::cout << std::endl;
-
-    std::cout << D.popFront() << std::endl;
-    std::cout << D.popFront() << std::endl;
-    std::cout << D.popFront() << std::endl;
-
-    D.showList();
-
-
+    for (int i = 0; i < 10; i++)
+        E.pushBack('a' + i);
 }
 
 

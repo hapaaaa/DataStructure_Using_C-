@@ -197,4 +197,94 @@ char single_LinkedList::popBack(void)
     std::cout << "Data : " << pointer->data << std::endl;
 }
 
+ //Circular Single Linked List
+ single_LinkedList_Node* circular_Single_LinkedList::getHeadAdr() 
+ {
+     return &(this->head);
+ }
+
+ single_LinkedList_Node* circular_Single_LinkedList::getTailAdr() 
+ {
+     single_LinkedList_Node* point = &(this->head);
+     while (point->nextNode != &(this->head))
+         point = point->nextNode;
+     return point;
+ }
+ void circular_Single_LinkedList::pushFront(char data) 
+ {
+     single_LinkedList_Node* newNode = new(single_LinkedList_Node);
+     newNode->data = data;
+     if (this->head.nextNode == &(this->head))
+         newNode->nextNode = &(this->head);
+     else 
+         newNode->nextNode = this->head.nextNode;
+     this->head.nextNode = newNode;
+     std::cout<< "Push Successed : " << data << std::endl;
+ }
+
+ void circular_Single_LinkedList::pushBack(char data) 
+ {
+     single_LinkedList_Node* lastNode = this->getTailAdr();
+     single_LinkedList_Node* newNode = new(single_LinkedList_Node);
+     newNode->data = data;
+     newNode->nextNode = &(this->head);
+     lastNode->nextNode = newNode;
+     std::cout << "Push Successed : " << data << std::endl;
+ }
+
+ char circular_Single_LinkedList::popFront(void) 
+ {
+     char data;
+     single_LinkedList_Node* buffer;
+
+     if (this->head.nextNode == &(this->head)) return false;
+
+     buffer = this->head.nextNode;
+     if (buffer->nextNode == &(this->head)) this->head.nextNode = &(this->head);
+     else this->head.nextNode = buffer->nextNode;
+
+     data = buffer->data;
+
+     free(buffer);
+
+     return data;
+ }
+ 
+ char circular_Single_LinkedList::popBack(void) 
+ {
+     char data;
+     single_LinkedList_Node* beforeLast;
+     single_LinkedList_Node* last;
+
+     if (this->head.nextNode == &(this->head)) return 0;
+
+     beforeLast = &(this->head);
+     last = beforeLast->nextNode;
+
+     if (last->nextNode == &(this->head)) 
+     {
+         data = last->data;
+         this->head.nextNode = &(this->head);
+         free(last);
+         return data;
+     }
+
+     else 
+     {
+         while (last->nextNode == &(this->head))
+         {
+             beforeLast = beforeLast->nextNode;
+             last = beforeLast->nextNode;
+         }
+         data = last->data;
+         beforeLast->nextNode = &(this->head);
+         free(last);
+         return data;
+     }
+       
+ }
+ 
+ 
+     
+
 

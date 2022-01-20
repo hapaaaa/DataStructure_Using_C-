@@ -1,5 +1,3 @@
-﻿  DataStructure.cpp
-  data_structure.cpp
-  Generating Code...
+﻿  data_structure.cpp
 D:\Git_Save_HERE\DataStructure\DataStructure\DataStructure\data_structure.cpp(161): warning C4715: 'single_LinkedList::popFront': not all control paths return a value
   DataStructure.vcxproj -> D:\Git_Save_HERE\DataStructure\DataStructure\Debug\DataStructure.exe
