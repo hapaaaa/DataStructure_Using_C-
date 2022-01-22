@@ -115,15 +115,15 @@ public:
         this->head.nextNode = NULL;
     }
     // insert
-    void pushFront(char data);
+    void pushFront(char data); //O(1)
     void pushBack(char data);
     void insert(char data, int nodeNum);
     // remove
-    char popFront();
+    char popFront();  //O(1)
     char popBack();
     char remove(int nodeNum);
     // size of list
-    int sizeOfList();
-    double_LinkedList_Node* getHeadAdr();
-    double_LinkedList_Node* getTailAdr();
+    int sizeOfList(); //O(n)
+    double_LinkedList_Node* getHeadAdr(); //O(1)
+    double_LinkedList_Node* getTailAdr(); //O(n)
 };

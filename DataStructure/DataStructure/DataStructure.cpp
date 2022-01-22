@@ -6,12 +6,20 @@
 
 int main()
 {
-    
-    circular_Single_LinkedList E;
+    double_LinkedList A;
+    std::cout << "Head Adr : " << A.getHeadAdr() << std::endl;
+    for (int i = 0; i < 10; i++) 
+    {
+        A.pushFront('a' + i);
+        std::cout << "Tail Adr/size : " << A.getTailAdr() << " , "<< A.sizeOfList() << std::endl;
+    }
     for (int i = 0; i < 10; i++)
-        E.pushBack('a'+i);
-    for (int i = 0; i < 10; i++)
-    std::cout << E.popBack()<< std::endl;
+    {
+        std::cout<< A.popFront() << std::endl;
+    }
+  
 }
+
+//what need to fix : Tail Adr, size
 
 

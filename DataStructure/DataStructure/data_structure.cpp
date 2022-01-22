@@ -298,6 +298,25 @@ char single_LinkedList::popBack(void)
  // insert
  void double_LinkedList::pushFront(char data)
  {
+     double_LinkedList_Node* newNode = new(double_LinkedList_Node);
+
+     newNode->data = data;
+     newNode->prevNode = &(this->head);
+     newNode->nextNode = NULL;
+
+     if (this->head.nextNode == NULL) 
+     {
+         this->head.nextNode = newNode;
+     }
+     else 
+     {
+         newNode->nextNode = this->head.nextNode;
+         this->head.nextNode = newNode;
+         newNode->nextNode->prevNode = newNode;
+     }
+
+     std::cout << "Push Successed : " << data << std::endl;
+     
  }
  void double_LinkedList::pushBack(char data)
  {
@@ -308,21 +327,63 @@ char single_LinkedList::popBack(void)
  // remove
  char double_LinkedList::popFront()
  {
+     char data;
+     double_LinkedList_Node* deleter;
+
+     if (this->head.nextNode == NULL) return false;
+
+     if (this->head.nextNode->nextNode == NULL) 
+     {
+         deleter = this->head.nextNode;
+         data = deleter->data;
+         this->head.nextNode = NULL;
+         free(deleter);
+         return data;
+     }
+     else 
+     {
+         deleter = this->head.nextNode;
+         data = deleter->data;
+         this->head.nextNode = deleter->nextNode;
+         deleter->nextNode->prevNode = &(this->head);
+         free(deleter);
+         return data;
+     }
  }
  char double_LinkedList::popBack()
  {
+     return 0;
  }
  char double_LinkedList::remove(int nodeNum)
  {
+     return 0;
  }
  // size of list
- int sizeOfList() {}
+ int double_LinkedList::sizeOfList()
+ {
+     int size = 0;
+     double_LinkedList_Node* lastNode = &(this->head);
+     while (lastNode->nextNode == NULL)
+     {
+         lastNode = lastNode->nextNode;
+         size++;
+     }
+     return size;
+ }
  double_LinkedList_Node* double_LinkedList::getHeadAdr() 
  {
      return &(this->head);
  }
 
- double_LinkedList_Node* double_LinkedList::getTailAdr() {}
+ double_LinkedList_Node* double_LinkedList::getTailAdr() 
+ {
+     double_LinkedList_Node* lastNode = &(this->head);
+     while (lastNode->nextNode == NULL) 
+     {
+         lastNode = lastNode->nextNode;
+     }
+     return lastNode;
+ }
  
  
      
