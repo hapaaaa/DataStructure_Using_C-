@@ -8,14 +8,10 @@ int main()
 {
     
     circular_Single_LinkedList E;
-    for(int i = 0; i < 10 ; i++)
-    E.pushBack('a' + i);
-
     for (int i = 0; i < 10; i++)
-    std::cout<<E.popBack()<<std::endl;
-
+        E.pushBack('a'+i);
     for (int i = 0; i < 10; i++)
-        E.pushBack('a' + i);
+    std::cout << E.popBack()<< std::endl;
 }
 
 

@@ -213,7 +213,10 @@ char single_LinkedList::popBack(void)
  void circular_Single_LinkedList::pushFront(char data) 
  {
      single_LinkedList_Node* newNode = new(single_LinkedList_Node);
+
      newNode->data = data;
+     newNode->nextNode = &(this->head);
+
      if (this->head.nextNode == &(this->head))
          newNode->nextNode = &(this->head);
      else 
@@ -226,9 +229,12 @@ char single_LinkedList::popBack(void)
  {
      single_LinkedList_Node* lastNode = this->getTailAdr();
      single_LinkedList_Node* newNode = new(single_LinkedList_Node);
+
      newNode->data = data;
      newNode->nextNode = &(this->head);
+
      lastNode->nextNode = newNode;
+
      std::cout << "Push Successed : " << data << std::endl;
  }
 
@@ -255,34 +261,68 @@ char single_LinkedList::popBack(void)
      char data;
      single_LinkedList_Node* beforeLast;
      single_LinkedList_Node* last;
-
-     if (this->head.nextNode == &(this->head)) return 0;
-
      beforeLast = &(this->head);
      last = beforeLast->nextNode;
 
-     if (last->nextNode == &(this->head)) 
-     {
-         data = last->data;
-         this->head.nextNode = &(this->head);
-         free(last);
-         return data;
-     }
-
+     if (this->head.nextNode == &(this->head)) return 'N';
      else 
      {
-         while (last->nextNode == &(this->head))
+         if (last->nextNode == &(this->head))
          {
-             beforeLast = beforeLast->nextNode;
-             last = beforeLast->nextNode;
+             data = last->data;
+             this->head.nextNode = &(this->head);
+             free(last);
+             return data;
          }
-         data = last->data;
-         beforeLast->nextNode = &(this->head);
-         free(last);
-         return data;
+
+         else
+         {
+             while (last->nextNode == &(this->head))
+             {
+                 beforeLast = beforeLast->nextNode;
+                 last = beforeLast->nextNode;
+             }
+             data = last->data;
+             beforeLast->nextNode = &(this->head);
+             free(last);
+             return data;
+         }
      }
+     
+
+     
        
  }
+
+ //Double Linked List
+ // insert
+ void double_LinkedList::pushFront(char data)
+ {
+ }
+ void double_LinkedList::pushBack(char data)
+ {
+ }
+ void double_LinkedList::insert(char data, int nodeNum)
+ {
+ }
+ // remove
+ char double_LinkedList::popFront()
+ {
+ }
+ char double_LinkedList::popBack()
+ {
+ }
+ char double_LinkedList::remove(int nodeNum)
+ {
+ }
+ // size of list
+ int sizeOfList() {}
+ double_LinkedList_Node* double_LinkedList::getHeadAdr() 
+ {
+     return &(this->head);
+ }
+
+ double_LinkedList_Node* double_LinkedList::getTailAdr() {}
  
  
      

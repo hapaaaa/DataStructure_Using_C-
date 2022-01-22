@@ -95,3 +95,35 @@ public :
     char popFront(void); // O(1)
     char popBack(void); // O(n)
 };
+//class for Double Linked List
+struct double_LinkedList_Node 
+{
+    char data;
+    double_LinkedList_Node* prevNode;
+    double_LinkedList_Node* nextNode;
+};
+
+class double_LinkedList 
+{
+private:
+    double_LinkedList_Node head;
+public:
+    double_LinkedList() 
+    {
+        this->head.data = NULL;
+        this->head.prevNode = NULL;
+        this->head.nextNode = NULL;
+    }
+    // insert
+    void pushFront(char data);
+    void pushBack(char data);
+    void insert(char data, int nodeNum);
+    // remove
+    char popFront();
+    char popBack();
+    char remove(int nodeNum);
+    // size of list
+    int sizeOfList();
+    double_LinkedList_Node* getHeadAdr();
+    double_LinkedList_Node* getTailAdr();
+};
