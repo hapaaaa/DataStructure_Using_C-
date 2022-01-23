@@ -302,9 +302,9 @@ char single_LinkedList::popBack(void)
 
      newNode->data = data;
      newNode->prevNode = &(this->head);
-     newNode->nextNode = NULL;
+     newNode->nextNode = nullptr;
 
-     if (this->head.nextNode == NULL) 
+     if (this->head.nextNode == nullptr)
      {
          this->head.nextNode = newNode;
      }
@@ -330,13 +330,13 @@ char single_LinkedList::popBack(void)
      char data;
      double_LinkedList_Node* deleter;
 
-     if (this->head.nextNode == NULL) return false;
+     if (this->head.nextNode == nullptr) return false;
 
-     if (this->head.nextNode->nextNode == NULL) 
+     if (this->head.nextNode->nextNode == nullptr)
      {
          deleter = this->head.nextNode;
          data = deleter->data;
-         this->head.nextNode = NULL;
+         this->head.nextNode = nullptr;
          free(deleter);
          return data;
      }
@@ -363,10 +363,10 @@ char single_LinkedList::popBack(void)
  {
      int size = 0;
      double_LinkedList_Node* lastNode = &(this->head);
-     while (lastNode->nextNode == NULL)
+     while (lastNode->nextNode != nullptr)
      {
          lastNode = lastNode->nextNode;
-         size++;
+         size = size + 1;
      }
      return size;
  }
@@ -378,10 +378,12 @@ char single_LinkedList::popBack(void)
  double_LinkedList_Node* double_LinkedList::getTailAdr() 
  {
      double_LinkedList_Node* lastNode = &(this->head);
-     while (lastNode->nextNode == NULL) 
+
+     while (lastNode->nextNode != nullptr) 
      {
          lastNode = lastNode->nextNode;
      }
+
      return lastNode;
  }
  

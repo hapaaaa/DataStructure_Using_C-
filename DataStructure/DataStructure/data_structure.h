@@ -111,8 +111,8 @@ public:
     double_LinkedList() 
     {
         this->head.data = NULL;
-        this->head.prevNode = NULL;
-        this->head.nextNode = NULL;
+        this->head.prevNode = nullptr;
+        this->head.nextNode = nullptr;
     }
     // insert
     void pushFront(char data); //O(1)
