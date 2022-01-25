@@ -12,14 +12,14 @@ int main()
 
     for (int i = 0; i < 10; i++) 
     {
-        A.pushFront('a' + i);
+        A.pushBack('a' + i);
     }
 
     std::cout << "Tail Adr/size : " << A.getTailAdr() << " , " << A.sizeOfList() << std::endl;
 
     for (int i = 0; i < 10; i++)
     {
-        std::cout<< A.popFront() << std::endl;
+        std::cout<< A.popBack() << std::endl;
     }
   
 }

@@ -277,7 +277,7 @@ char single_LinkedList::popBack(void)
 
          else
          {
-             while (last->nextNode == &(this->head))
+             while (last->nextNode != &(this->head))
              {
                  beforeLast = beforeLast->nextNode;
                  last = beforeLast->nextNode;
@@ -320,9 +320,31 @@ char single_LinkedList::popBack(void)
  }
  void double_LinkedList::pushBack(char data)
  {
+     double_LinkedList_Node* newNode = new(double_LinkedList_Node);
+
+     newNode->data = data;
+     newNode->prevNode = nullptr;
+     newNode->nextNode = nullptr;
+
+     double_LinkedList_Node* lastNode = this->getTailAdr();
+
+     lastNode->nextNode = newNode;
+     newNode->prevNode = lastNode;
+     
  }
- void double_LinkedList::insert(char data, int nodeNum)
+ double_LinkedList double_LinkedList::splice(double_LinkedList_Node* prevNode, double_LinkedList_Node* nextNode)
  {
+     double_LinkedList_Node* slicePoint1 = prevNode->prevNode;
+     double_LinkedList_Node* slicePoint2 = prevNode->nextNode;
+
+     slicePoint1->nextNode = slicePoint2;
+     slicePoint2->prevNode = slicePoint1;
+
+     double_LinkedList splicedOut;
+     splicedOut.head.nextNode = prevNode;
+     nextNode->nextNode = nullptr;
+
+     return splicedOut;
  }
  // remove
  char double_LinkedList::popFront()
@@ -352,12 +374,32 @@ char single_LinkedList::popBack(void)
  }
  char double_LinkedList::popBack()
  {
-     return 0;
+     char data;
+     double_LinkedList_Node* lastNode;
+     double_LinkedList_Node* newLastNode;
+
+     lastNode = this->getTailAdr();
+
+     if (lastNode == &(this->head)) return false;
+
+     if (lastNode->prevNode == &(this->head)) 
+     {
+         this->head.nextNode = nullptr;
+         data = lastNode->data;
+         free(lastNode);
+         return data;
+     }
+     else 
+     {
+         data = lastNode->data;
+         newLastNode = lastNode->prevNode;
+         newLastNode->nextNode = nullptr;
+         free(lastNode);
+         return data;
+     }
+        
  }
- char double_LinkedList::remove(int nodeNum)
- {
-     return 0;
- }
+
  // size of list
  int double_LinkedList::sizeOfList()
  {

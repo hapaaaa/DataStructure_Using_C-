@@ -117,11 +117,10 @@ public:
     // insert
     void pushFront(char data); //O(1)
     void pushBack(char data);
-    void insert(char data, int nodeNum);
+    double_LinkedList splice(double_LinkedList_Node* prevNode, double_LinkedList_Node* nextNode);
     // remove
     char popFront();  //O(1)
     char popBack();
-    char remove(int nodeNum);
     // size of list
     int sizeOfList(); //O(n)
     double_LinkedList_Node* getHeadAdr(); //O(1)
